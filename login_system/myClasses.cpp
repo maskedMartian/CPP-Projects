@@ -5,6 +5,7 @@
 using namespace std;
 
 
+// Class definitions
 class User 
 {
     private:
@@ -12,22 +13,30 @@ class User
                password;
 
     public:
-        string getName()
-        {
-        	return username; 
-        }
-        void setName(string name)
-        {
-            username = name;
-        }
-        string getPassword()
-        {
-        	return password;
-        }
-        void setPassword(string passwrd)
-        {
-            password = passwrd;
-        }
+        string getName();
+        void setName(string name);
+        string getPassword();
+        void setPassword(string passwrd);
 };
 
 
+// Class method definitions
+string User::getName()
+{
+    return username; 
+}
+
+void User::setName(string name)
+{
+    username = name;
+}
+        
+string User::getPassword()
+{
+    return password;
+}
+        
+void User::setPassword(string passwrd)
+{
+    password = passwrd;
+}
