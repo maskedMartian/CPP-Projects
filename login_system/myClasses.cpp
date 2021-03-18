@@ -25,40 +25,12 @@ class FileManager
 {
     private:
         string filename;
+        
     public:
-        FileManager(string username)
-        {
-            filename = username + ".txt";
-        }
-        void saveToFile(string username, string password)
-        {
-            ofstream saveFile(filename);
-
-            saveFile << password;
-            saveFile.close();
-        }
-        string readFromFile(string username)
-        {
-            string password;
-
-            ifstream readFile(filename);
-            getline(readFile, password);
-            readFile.close(); 
-            return password;
-        }
-        bool fileExists()
-        {
-            ifstream file(filename);
-
-            if(!file)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        FileManager(string username);
+        void saveToFile(string username, string password);
+        string readFromFile(string username);
+        bool fileExists();
 };
 
 
@@ -81,4 +53,41 @@ string User::getPassword()
 void User::setPassword(string passwrd)
 {
     password = passwrd;
+}
+
+FileManager::FileManager(string username)
+{
+    filename = username + ".txt";
+}
+
+void FileManager::saveToFile(string username, string password)
+{
+    ofstream saveFile(filename);
+
+    saveFile << password;
+    saveFile.close();
+}
+
+string FileManager::readFromFile(string username)
+{
+    string password;
+
+    ifstream readFile(filename);
+    getline(readFile, password);
+    readFile.close(); 
+    return password;
+}
+
+bool FileManager::fileExists()
+{
+    ifstream file(filename);
+
+    if(!file)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
