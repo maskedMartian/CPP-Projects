@@ -39,45 +39,10 @@ class UserInterface
     private:
 
     public:
-        int getMenuChoice()
-        {
-            int choice = 0;
-            
-            cout << "\nMain menu\n";
-            cout << "  [1] - Register\n";
-            cout << "  [2] - Login\n";
-            cout << "  [3] - Exit\n\n";
-            cout << "Please make a selection: ";
-            cin >> choice;
-            return choice; 
-        }
-
-        string getUsername()
-        {
-            string username;
-
-            cout << "Please enter your username: ";
-            cin >> username;
-            return username;
-        }
-
-        string getPassword()
-        {
-            string password;
-
-            cout << "Please enter your password: ";
-            cin >> password;
-            return password;
-        }
-
-        bool verifyPassword(string password1)
-        {
-            string password2;
-
-            cout << "Please re-enter your password: ";
-            cin >> password2;
-            return password1 == password2;
-        }
+        int getMenuChoice();
+        string getUsername();
+        string getPassword();
+        bool verifyPassword(string password1);
 };
 
 
@@ -137,4 +102,44 @@ bool FileManager::fileExists()
     {
         return true;
     }
+}
+
+int UserInterface::getMenuChoice()
+{
+    int choice = 0;
+            
+    cout << "\nMain menu\n";
+    cout << "  [1] - Register\n";
+    cout << "  [2] - Login\n";
+    cout << "  [3] - Exit\n\n";
+    cout << "Please make a selection: ";
+    cin >> choice;
+    return choice; 
+}
+
+string UserInterface::getUsername()
+{
+    string username;
+
+    cout << "Please enter your username: ";
+    cin >> username;
+    return username;
+}
+
+string UserInterface::getPassword()
+{
+    string password;
+
+    cout << "Please enter your password: ";
+    cin >> password;
+    return password;
+}
+
+bool UserInterface::verifyPassword(string password1)
+{
+    string password2;
+
+    cout << "Please re-enter your password: ";
+    cin >> password2;
+    return password1 == password2;
 }
