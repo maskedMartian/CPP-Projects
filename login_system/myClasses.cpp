@@ -27,9 +27,9 @@ class FileManager
         string filename;
 
     public:
-        FileManager(string username);
-        void saveToFile(string username, string password);
-        string readFromFile(string username);
+        void setFilename(string username);
+        void saveToFile(string password);
+        string readFromFile();
         bool fileExists();
 };
 
@@ -67,12 +67,12 @@ void User::setPassword(string passwrd)
     password = passwrd;
 }
 
-FileManager::FileManager(string username)
+void FileManager::setFilename(string username)
 {
     filename = username + ".txt";
 }
 
-void FileManager::saveToFile(string username, string password)
+void FileManager::saveToFile(string password)
 {
     ofstream saveFile(filename);
 
@@ -80,7 +80,7 @@ void FileManager::saveToFile(string username, string password)
     saveFile.close();
 }
 
-string FileManager::readFromFile(string username)
+string FileManager::readFromFile()
 {
     string password;
 
