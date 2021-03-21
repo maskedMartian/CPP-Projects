@@ -39,7 +39,7 @@ class UserInterface
     private:
 
     public:
-        int getMenuChoice();
+        int inputMenuChoice();
         string getUsername();
         string getPassword();
         bool verifyPassword(string password1);
@@ -104,7 +104,7 @@ bool FileManager::fileExists()
     }
 }
 
-int UserInterface::getMenuChoice()
+int UserInterface::inputMenuChoice()
 {
     int choice = 0;
             

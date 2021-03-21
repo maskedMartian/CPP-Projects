@@ -17,7 +17,7 @@ int main()
 	FileManager fileManager;
 	UserInterface userInterface;
 
-    menuChoice = userInterface.getMenuChoice();
+    menuChoice = userInterface.inputMenuChoice();
 
     while (menuChoice != EXIT)
     {
@@ -63,7 +63,7 @@ int main()
             	}	
             }
     	}
-        menuChoice = userInterface.getMenuChoice();
+        menuChoice = userInterface.inputMenuChoice();
     }
 	return 0;
 }
