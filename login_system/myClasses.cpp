@@ -121,7 +121,7 @@ string UserInterface::getUsername()
 {
     string username;
 
-    cout << "Please enter your username: ";
+    cout << "\nPlease enter your username: ";
     cin >> username;
     return username;
 }
