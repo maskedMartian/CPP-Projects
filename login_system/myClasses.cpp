@@ -55,56 +55,10 @@ class BusinessManager
         UserInterface userInterface;
 
     public:
-        void setMenuSelection()
-        {
-            menuSelection = userInterface.inputMenuChoice();
-        }
-        int getMenuSelection()
-        {
-            return menuSelection;
-        }
-        void registerUser()
-        {
-            user.setName(userInterface.getUsername());
-            fileManager.setFilename(user.getName());
-            if (!fileManager.fileExists())
-            {
-                user.setPassword(userInterface.getPassword());
-                while (!userInterface.verifyPassword(user.getPassword()))
-                {
-                    cout << "\nERROR: Passwords did not match. Try again.\n\n";
-                    user.setPassword(userInterface.getPassword());  
-                }
-                fileManager.setFilename(user.getName());
-                fileManager.saveToFile(user.getPassword());
-                cout << "\nUser registered\n";
-            }
-            else
-            {
-                cout << "\nERROR: User already registered.\n";
-            }
-        }
-        void loginUser()
-        {
-            user.setName(userInterface.getUsername());
-            fileManager.setFilename(user.getName());
-            if (!fileManager.fileExists())
-            {
-                cout << "\nERROR: User not registered\n";
-            }
-            else
-            {
-                user.setPassword(userInterface.getPassword());
-                if (fileManager.readFromFile() != user.getPassword())
-                {
-                    cout << "\nERROR: Incorrect Password\n";
-                }
-                else
-                {
-                    cout << "\nYou are logged in\n";
-                }   
-            }
-        }
+        void setMenuSelection();
+        int getMenuSelection();
+        void registerUser();
+        void loginUser();
 };
 
 
@@ -204,4 +158,58 @@ bool UserInterface::verifyPassword(string password1)
     cout << "Please re-enter your password: ";
     cin >> password2;
     return password1 == password2;
+}
+
+void BusinessManager::setMenuSelection()
+{
+    menuSelection = userInterface.inputMenuChoice();
+}
+        
+int BusinessManager::getMenuSelection()
+{
+    return menuSelection;
+}
+        
+void BusinessManager::registerUser()
+{
+    user.setName(userInterface.getUsername());
+    fileManager.setFilename(user.getName());
+    if (!fileManager.fileExists())
+    {
+        user.setPassword(userInterface.getPassword());
+        while (!userInterface.verifyPassword(user.getPassword()))
+        {
+            cout << "\nERROR: Passwords did not match. Try again.\n\n";
+            user.setPassword(userInterface.getPassword());  
+        }
+        fileManager.setFilename(user.getName());
+        fileManager.saveToFile(user.getPassword());
+        cout << "\nUser registered\n";
+    }
+    else
+    {
+        cout << "\nERROR: User already registered.\n";
+    }
+}
+        
+void BusinessManager::loginUser()
+{
+    user.setName(userInterface.getUsername());
+    fileManager.setFilename(user.getName());
+    if (!fileManager.fileExists())
+    {
+        cout << "\nERROR: User not registered\n";
+    }
+    else
+    {
+        user.setPassword(userInterface.getPassword());
+        if (fileManager.readFromFile() != user.getPassword())
+        {
+            cout << "\nERROR: Incorrect Password\n";
+        }
+        else
+        {
+            cout << "\nYou are logged in\n";
+        }   
+    }
 }
