@@ -134,23 +134,31 @@ void FileManager::deleteFile()
 
 int UserInterface::inputMenuChoice(bool loggedIn)
 {
-    int choice = 0;
-            
+    int choice;
+     
     cout << "\nMain menu\n";
     if (loggedIn)
     {
-        cout << " [1] - Unregister\n";
-        cout << " [2] - Logout\n";
-        cout << " [3] - Exit\n\n";
+        cout << " [1] - Unregister\n"
+             << " [2] - Logout\n"
+             << " [3] - Exit\n\n";
     }
     else
     {
-        cout << "  [1] - Register\n";
-        cout << "  [2] - Login\n";
-        cout << "  [3] - Exit\n\n";
+        cout << "  [1] - Register\n"
+             << "  [2] - Login\n"
+             << "  [3] - Exit\n\n";
     }
     cout << "Please make a selection: ";
     cin >> choice;
+    while (!cin.good() || choice < 1 || choice > 3)
+    {
+       cout << "\nERROR: That is not a valid menu choice.\n"
+            << "Please make a valid selection: ";
+       cin.clear();
+       cin.ignore(1024, '\n');
+       cin >> choice;
+    }
     return choice; 
 }
 
