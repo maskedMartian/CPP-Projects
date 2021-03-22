@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -31,6 +32,7 @@ class FileManager
         void saveToFile(string password);
         string readFromFile();
         bool fileExists();
+        void deleteFile();
 };
 
 
@@ -59,6 +61,8 @@ class BusinessManager
         void setMenuSelection();
         int getMenuSelection();
         void registerUser();
+        void unregisterUser();
+        void registration();
         void loginUser();
         void logoutUser();
         void authentication();
@@ -121,6 +125,11 @@ bool FileManager::fileExists()
     {
         return true;
     }
+}
+
+void FileManager::deleteFile()
+{
+    remove(filename.c_str());
 }
 
 int UserInterface::inputMenuChoice(bool loggedIn)
@@ -203,6 +212,25 @@ void BusinessManager::registerUser()
         cout << "\nERROR: User already registered.\n";
     }
 }
+
+void BusinessManager::unregisterUser()
+{
+    fileManager.deleteFile();
+    loggedIn = false;
+    cout << "\nUser is unregistered\n";
+}
+
+void BusinessManager::registration()
+{
+    if (loggedIn)
+    {
+        unregisterUser();
+    }
+    else
+    {
+        registerUser();
+    }
+}
         
 void BusinessManager::loginUser()
 {
@@ -229,8 +257,8 @@ void BusinessManager::loginUser()
 
 void BusinessManager::logoutUser()
 {
-    cout << "\nYou are logged out\n";
     loggedIn = false;
+    cout << "\nYou are logged out\n";
 }
 
 void BusinessManager::authentication()

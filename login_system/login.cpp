@@ -18,19 +18,11 @@ int main()
     {
         if (businessManager.getMenuSelection() == REGISTRATION)
         {
-            businessManager.registerUser();
+            businessManager.registration();
         }
         else if (businessManager.getMenuSelection() == AUTHENTICATION)
         {
         	businessManager.authentication();
-        	// if (businessManager.userLoggedIn())
-        	// {
-         //        businessManager.logoutUser();
-        	// }
-        	// else
-        	// {
-         //        businessManager.loginUser();
-         //    }
         }
         businessManager.setMenuSelection();
     }
