@@ -5,8 +5,8 @@
 
 using namespace std;
 
-const int REGISTER = 1;
-const int LOGIN = 2;
+const int REGISTRATION = 1;
+const int AUTHENTICATION = 2;
 const int EXIT = 3;
 
 int main()
@@ -16,17 +16,25 @@ int main()
     businessManager.setMenuSelection();
     while (businessManager.getMenuSelection() != EXIT)
     {
-        if (businessManager.getMenuSelection() == REGISTER)
+        if (businessManager.getMenuSelection() == REGISTRATION)
         {
             businessManager.registerUser();
         }
-        else if (businessManager.getMenuSelection() == LOGIN)
+        else if (businessManager.getMenuSelection() == AUTHENTICATION)
         {
-            businessManager.loginUser();
+        	businessManager.authentication();
+        	// if (businessManager.userLoggedIn())
+        	// {
+         //        businessManager.logoutUser();
+        	// }
+        	// else
+        	// {
+         //        businessManager.loginUser();
+         //    }
         }
         businessManager.setMenuSelection();
     }
-    
+
 	return 0;
 }
 

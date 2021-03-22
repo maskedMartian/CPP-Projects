@@ -39,7 +39,7 @@ class UserInterface
     private:
 
     public:
-        int inputMenuChoice();
+        int inputMenuChoice(bool loggedIn);
         string getUsername();
         string getPassword();
         bool verifyPassword(string password1);
@@ -50,6 +50,7 @@ class BusinessManager
 {
     private:
         int menuSelection;
+        bool loggedIn = false;
         User user;
         FileManager fileManager;
         UserInterface userInterface;
@@ -59,6 +60,8 @@ class BusinessManager
         int getMenuSelection();
         void registerUser();
         void loginUser();
+        void logoutUser();
+        void authentication();
 };
 
 
@@ -120,14 +123,23 @@ bool FileManager::fileExists()
     }
 }
 
-int UserInterface::inputMenuChoice()
+int UserInterface::inputMenuChoice(bool loggedIn)
 {
     int choice = 0;
             
     cout << "\nMain menu\n";
-    cout << "  [1] - Register\n";
-    cout << "  [2] - Login\n";
-    cout << "  [3] - Exit\n\n";
+    if (loggedIn)
+    {
+        cout << " [1] - Unregister\n";
+        cout << " [2] - Logout\n";
+        cout << " [3] - Exit\n\n";
+    }
+    else
+    {
+        cout << "  [1] - Register\n";
+        cout << "  [2] - Login\n";
+        cout << "  [3] - Exit\n\n";
+    }
     cout << "Please make a selection: ";
     cin >> choice;
     return choice; 
@@ -162,7 +174,7 @@ bool UserInterface::verifyPassword(string password1)
 
 void BusinessManager::setMenuSelection()
 {
-    menuSelection = userInterface.inputMenuChoice();
+    menuSelection = userInterface.inputMenuChoice(loggedIn);
 }
         
 int BusinessManager::getMenuSelection()
@@ -210,6 +222,25 @@ void BusinessManager::loginUser()
         else
         {
             cout << "\nYou are logged in\n";
+            loggedIn = true;
         }   
+    }
+}
+
+void BusinessManager::logoutUser()
+{
+    cout << "\nYou are logged out\n";
+    loggedIn = false;
+}
+
+void BusinessManager::authentication()
+{
+    if (loggedIn)
+    {
+        logoutUser();
+    }
+    else
+    {
+        loginUser();
     }
 }
